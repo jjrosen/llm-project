@@ -14,7 +14,7 @@ def split_markdown_by_h2(md_text):
   return [chunk.strip() for chunk in chunks if chunk.strip()]
 
 # Grab the documentation from the flamehamster docs
-with open("flamehamster.md", "r", encoding="utf-8") as file:
+with open("first-aid.md", "r", encoding="utf-8") as file:
   documentation = file.read()
 
 # pass in the documentation into the split_markdown_by_h2 function to split it into relevant chunks
@@ -26,18 +26,18 @@ for i, chunk in enumerate(chunks):
   records.append({
     "id": f"chunk-{i}",
     "chunk_text": chunk,
-    "manual": "flamehamster"
+    "manual": "first-aid"
   })
 
 # upload/upsert the chunks into the Pinecone index/database
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-dense_index = pc.Index("flamehamster-project")
+dense_index = pc.Index("first-aid")
 # dense_index.upsert_records("flamehamster", records)
 
 BATCH_SIZE = 96
 for i in range(0, len(records), BATCH_SIZE):
    batch = records[i:i + BATCH_SIZE]
-   dense_index.upsert_records("flamehamster", batch)
+   dense_index.upsert_records("first-aid", batch)
    print(f"Upserted batch {i // BATCH_SIZE + 1} ({len(batch)} records)")
 
 
