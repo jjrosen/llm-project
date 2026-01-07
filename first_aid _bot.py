@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from pinecone import Pinecone
+import json
 
 load_dotenv()
 
@@ -44,7 +45,7 @@ while user_input != "exit":
 
   response = llm.responses.create(
     model="gpt-4.1-mini",
-    temperature=1.5,
+    temperature=0.5,
     input=history
   )
 
@@ -57,3 +58,7 @@ while user_input != "exit":
   user_input = input("User: ")
 
 print("Goodbye")
+
+print("----------------")
+print(json.dumps(history, indent=2))
+print("----------------")

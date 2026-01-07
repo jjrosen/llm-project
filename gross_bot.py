@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 from pinecone import Pinecone
+import json
 
 load_dotenv()
 llm = OpenAI()
@@ -61,3 +62,7 @@ while user_input != "exit":
   ]
 
   user_input = input("User: ")
+
+print("----------------")
+print(json.dumps(history, indent=2))
+print("----------------")
