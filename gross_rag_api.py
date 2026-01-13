@@ -19,7 +19,7 @@ app.add_middleware(
 
 llm = OpenAI()
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-dense_index = pc.Index("llm-project")
+dense_index = pc.Index("gross-project")
 
 conversations = {}
 conversation_chunks = {}  # NEW: Track chunks per conversation - instead of being an empty string - basically, we need to be able to determine what chunk is what and with a string where everything is one blob, that isn't possible so instead, we use a dictionary/hash where we can determine what chunk is what
@@ -32,7 +32,7 @@ class ChatMessage(BaseModel):
 def rag(user_input, rag_chunks):
    """Search Pinecone and ADD chunks to the dictionary"""
    results = dense_index.search(
-       namespace="all-gross",
+       namespace="GROSS-INC",
        query={
            "top_k": 3,
            "inputs": {"text": user_input}
