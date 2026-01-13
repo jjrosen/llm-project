@@ -18,7 +18,10 @@ history = [
    * Rumblechirp, an email client.
    * GuineaPigment, a drawing tool for creating/editing SVGs
    * EMRgency, an electronic medical record system
-   * Verbiage++, a content management system."""},
+   * Verbiage++, a content management system.
+   Don't assume what the user is talking about, i you don't know what their talkijng about ask questions
+    When helping troubleshoot a user's issue, ask a proactive question to help determine exactly what the issue is.
+   When asking proactive follow-up questions, ask exactly one question at a time."""},
   {"role": "assistant", "content": assistant_message}
 ]
 
